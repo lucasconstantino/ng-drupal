@@ -1,0 +1,21 @@
+{
+  "name": "ng-drupal",
+  "version": "0.0.0",
+  "authors": [
+    "Lucas Constantino <lucas@taller.net.br>"
+  ],
+  "description": "A Drupal Services API for AngularJS applications.",
+  "main": "./src/ng-drupal.js",
+  "keywords": [
+    "Drupal",
+    "AngularJS"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
