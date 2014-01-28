@@ -1,4 +1,4 @@
 ng-drupal
 =========
 
-A Drupal Services API integration for AngularJS applications.
+A collection of Drupal related AngularJS modules.
