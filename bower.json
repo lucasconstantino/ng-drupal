@@ -4,7 +4,7 @@
   "authors": [
     "Lucas Constantino <lucas@taller.net.br>"
   ],
-  "description": "A Drupal Services API for AngularJS applications.",
+  "description": "Drupal related module set for AngularJS applications.",
   "main": "./src/ng-drupal.js",
   "keywords": [
     "Drupal",
