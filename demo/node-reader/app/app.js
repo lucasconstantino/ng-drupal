@@ -23,7 +23,9 @@ angular.module('node-reader', ['drupal.services'])
     // the Drupal side. You can do it thorught the CORS module of Drupal,
     // which you can find at (https://drupal.org/project/cors).
     
-    DrupalServicesProvider.setBaseUrl('http://contrib.drupal/api');
+    var baseUrl = (config.baseUrl ? config.baseUrl + '/' : '') + config.endpoint;
+
+    DrupalServicesProvider.setBaseUrl(baseUrl);
 
   })
 
