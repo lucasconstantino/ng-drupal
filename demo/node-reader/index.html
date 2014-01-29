@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Drupal Node-Reader via AngularJS</title>
+</head>
+<body ng-app="node-reader">
+
+  <!-- HTML -->
+  <div ng-controller="NodeReaderController">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Title</th>
+          <th>Type</th>
+          <th>Comments</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="node in nodes">
+          <td>{{node.nid}}</td>
+          <td>{{node.title}}</td>
+          <td>{{node.type}}</td>
+          <td>{{node.comment}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Vendors -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+  <script src="//cdn.jsdelivr.net/restangular/latest/restangular.js"></script>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" />
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+  <!-- Drupal related modules -->
+  <script src="src/services/services.js"></script>
+
+  <!-- Application script loading -->
+  <script src="app/app.js"></script>
+</body>
+</html>
