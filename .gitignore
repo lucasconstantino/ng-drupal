@@ -1,0 +1,2 @@
+# Ignore demo config.js files to keep only exemples.
+demo/*/config.js
