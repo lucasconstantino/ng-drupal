@@ -19,15 +19,22 @@
 
 angular.module('drupal', [
     'drupal.global',
-    'drupal.services'
+    'drupal.services',
+    'drupal.auth'
   ])
   
-  // Concatenate providers.
+  /**
+   * DrupalProvider cofiguration.
+   */
   .config(function (DrupalProvider) {
+    // Concatenate sub-providers.
     DrupalProvider.concat('drupal');
   })
 
-  // Concatenate services.
+  /**
+   * Drupal run cofiguration.
+   */
   .run(function (Drupal) {
+    // Concatenate services.
     Drupal.concat('drupal');
   });
