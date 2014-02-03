@@ -13,6 +13,9 @@ angular.module('drupal.services', [
     'restangular'
   ])
 
+  /**
+   * Main Drupal Services provider.
+   */
   .provider('DrupalServices', function(RestangularProvider, $injector) {
 
     // Drupal services is simply a wrapper to Restangular because we don't
@@ -20,15 +23,32 @@ angular.module('drupal.services', [
     // Read more on Restangular: (https://github.com/mgonto/restangular)
     DrupalServicesProvider = RestangularProvider;
 
-    // try {
-    //   // Make it available to the master wrapper.
-    //   $injector.get('DrupalProvider').ServicesProvider = DrupalServicesProvider;
-    // } catch(e) {};
-
     return DrupalServicesProvider
   })
 
+  /**
+   * DrupalServices configuration.
+   */
   .config(function (DrupalServicesProvider) {
+
+    /**
+     * Extend all DrupalServices resources.
+     * @return {[type]} [description]
+     */
+    DrupalServicesProvider.setOnElemRestangularized(function (resource) {
+      
+      /**
+       * Function to check if resource is cross-domain.
+       */
+      this.isCrossDomain = function() {
+        var parser = document.createElement('a');
+        parser.href = this.baseUrl;
+
+        return this.isAbsoluteUrl() && parser.hostname != location.hostname;
+      };
+
+      return resource;
+    });
 
     // Configure the Restangular object.
     DrupalServicesProvider.setDefaultHttpFields({
