@@ -26,7 +26,6 @@ angular.module('node-reader', ['drupal.services'])
     var baseUrl = (config.baseUrl ? config.baseUrl + '/' : '') + config.endpoint;
 
     DrupalServicesProvider.setBaseUrl(baseUrl);
-
   })
 
   /**

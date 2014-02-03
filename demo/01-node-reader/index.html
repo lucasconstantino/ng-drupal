@@ -6,8 +6,16 @@
 </head>
 <body ng-app="node-reader">
 
+  <div class="jumbotron">
+    <div class="page-header">
+      <div class="container">
+        <h1>Demo 01 <small>Node Reader</small></h1>
+      </div>
+    </div>
+  </div>
+
   <!-- HTML -->
-  <div ng-controller="NodeReaderController">
+  <div ng-controller="NodeReaderController" class="container">
     <table class="table">
       <thead>
         <tr>
@@ -28,11 +36,13 @@
     </table>
   </div>
 
-  <!-- Vendors -->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <!-- Dependencies -->
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script><!-- Restangular depends on underscore. -->
   <script src="//cdn.jsdelivr.net/restangular/latest/restangular.js"></script>
+
+  <!-- Optional dependencies -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- Bootstrap depends on jQuery. -->
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" />
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 
