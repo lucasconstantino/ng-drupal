@@ -1,0 +1,18 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Title</th>
+      <th>Type</th>
+      <th>Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="node in nodes">
+      <td>{{node.nid}}</td>
+      <td>{{node.title}}</td>
+      <td>{{node.type}}</td>
+      <td>{{node.comment}}</td>
+    </tr>
+  </tbody>
+</table>
