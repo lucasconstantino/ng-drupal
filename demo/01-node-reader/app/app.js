@@ -29,11 +29,14 @@ angular.module('node-reader', ['drupal.services'])
   })
 
   /**
-   * Create a factory only for managing the nodes resource.
+   * Create a factory only for managing nodes resource.
    */
   .factory('Nodes', function(DrupalServices) {
 
     // "node" is a endpoint at Drupal that should return a collection of nodes.
+    // Note that "all()", "getList()" and "$object" are all defined by Restangular,
+    // so to better understand what this code does you should refer to
+    // (https://github.com/mgonto/restangular).
     return DrupalServices.all('node').getList().$object;
   })
 

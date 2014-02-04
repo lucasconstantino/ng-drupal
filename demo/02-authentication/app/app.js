@@ -37,10 +37,9 @@ angular.module('authentication', ['ngRoute', 'ngCookies', 'drupal'])
   })
 
   /**
-   * Create a factory only for managing the nodes resource.
+   * Create a factory only for managing nodes resource.
    */
   .factory('Nodes', function(DrupalServices) {
-    // "node" is a common endpoint at Drupal that should return a collection of nodes.
     return DrupalServices.all('node').getList().$object;
   })
 
