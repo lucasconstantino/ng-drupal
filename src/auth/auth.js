@@ -237,50 +237,69 @@ angular.module('drupal.auth', [
               setCSRFtoken()
 
                 // On token receival.
-                .then(function() {
+                .then(
 
-                  // Go get the user object.
-                  resource.all('system/connect').customPOST().then(
+                  // On token request success.
+                  function() {
 
-                    // Run if login is successful.
-                    function (response) {
+                    // Go get the user object.
+                    resource.all('system/connect').customPOST().then(
 
-                      // Save authentication information.
-                      DrupalAuth.user = response.user;
-                      session_name = response.session_name;
-                      sessid = response.sessid;
+                      // Run if login is successful.
+                      function (response) {
 
-                      // Broadcast login event.
-                      // We don't broadcast the full response because the session should
-                      // not be broadcasted.
-                      $rootScope.$broadcast('drupal.auth:login.success', {
-                        DrupalAuth: DrupalAuth,
-                        cookie: true // Let listener know it was made using a cookie system.
-                      });
-                    },
+                        // Anonymous user.
+                        if (response.user.uid == 0) {
 
-                    // Run if user retrieval failed.
-                    function (response) {
+                          // Reset session data.
+                          session_name = null;
+                          sessid = null;
 
-                      // Reset session data.
-                      session_name = null;
-                      sessid = null;
+                          $rootScope.$broadcast('drupal.auth:cookie-login.failure', {
+                            DrupalAuth: DrupalAuth,
+                            response: response
+                          });
 
-                      $rootScope.$broadcast('drupal.auth:cookie-login.failure', {
-                        DrupalAuth: DrupalAuth,
-                        response: response
-                      });
-                    }
-                  );
-                },
+                          return;
+                        } else {
 
-                // On token request failure.
-                function (response) {
+                          // Save authentication information.
+                          DrupalAuth.user = response.user;
+                          session_name = response.session_name;
+                          sessid = response.sessid;
 
-                  // Reset session data.
-                  session_name = null;
-                  sessid = null;
-                });
+                          // Broadcast login event.
+                          // We don't broadcast the full response because the session should
+                          // not be broadcasted.
+                          $rootScope.$broadcast('drupal.auth:login.success', {
+                            DrupalAuth: DrupalAuth,
+                            cookie: true // Let listener know it was made using a cookie system.
+                          });
+                        }
+                      },
+
+                      // Run if user retrieval failed.
+                      function (response) {
+
+                        // Reset session data.
+                        session_name = null;
+                        sessid = null;
+
+                        $rootScope.$broadcast('drupal.auth:cookie-login.failure', {
+                          DrupalAuth: DrupalAuth,
+                          response: response
+                        });
+                      }
+                    );
+                  },
+
+                  // On token request failure.
+                  function (response) {
+
+                    // Reset session data.
+                    session_name = null;
+                    sessid = null;
+                  });
             }
           } catch(e) {
             // Ignore cookiesProvider error, but throw up any other.
@@ -469,9 +488,7 @@ angular.module('drupal.auth', [
 
           // If request has a DrupalAuth object available, let it configure
           // the request to add authentication headers.
-          if (config.DrupalAuth) {
-            config.DrupalAuth.configureRequest(config);
-          }
+          if (config.DrupalAuth) config.DrupalAuth.configureRequest(config);
 
           return config;
         }
