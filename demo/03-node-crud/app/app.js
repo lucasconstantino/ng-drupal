@@ -176,8 +176,6 @@ angular.module('node-crud', ['ngRoute', 'ngCookies', 'drupal'])
 
           // On failure.
           function (response) {
-            console.log('Error');
-            console.log(response);
             alert(response.data && response.data[0] || 'Could not save the node!');
           }
         ).finally(function() { saving = false; });
