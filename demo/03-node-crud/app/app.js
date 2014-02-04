@@ -197,12 +197,25 @@ angular.module('node-crud', ['ngRoute', 'ngCookies', 'drupal'])
 
     // Listen for login events.
     $rootScope.$on('drupal.auth:login.success', function (e, data) {
-      // $location.path('/nodes');
+      $location.path('/nodes');
     });
 
-    // List for logout events.
+    // Listen for logout events.
     $rootScope.$on('drupal.auth:logout.success', function (e, data) {
       if (data.DrupalAuth == DrupalAuth) {
+        $location.path('/');
+      }
+    });
+
+    // Listen for location changes.
+    $rootScope.$on('$routeChangeStart', function (e, to) {
+
+      // If logged in and headed to any location but the home page.
+      if (!DrupalAuth.user && to.$$route && to.$$route.originalPath != '/') {
+
+        // Prevent location change.
+        e.preventDefault();
+        // Go to home.
         $location.path('/');
       }
     });
