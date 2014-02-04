@@ -1,0 +1,26 @@
+<a href="#/nodes/create" class="btn btn-success">New node</a>
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Title</th>
+      <th>Type</th>
+      <th>Comments</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="node in nodes">
+      <td>{{node.nid}}</td>
+      <td>{{node.title}}</td>
+      <td>{{node.type}}</td>
+      <td>{{node.comment}}</td>
+      <td>
+        <div class="btn-group">
+          <button ng-click="delete(node)" class="btn btn-default btn-sm btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+          <a ng-href="#/nodes/{{node.id}}/edit" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil"></span></a>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

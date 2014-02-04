@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Drupal Authentication via AngularJS</title>
+</head>
+<body ng-app="node-crud">
+
+  <!-- HTML -->
+  <div class="jumbotron">
+    <div class="page-header">
+      <div class="container">
+
+        <!-- On authentication, the "$rootScope.user" will be available. -->
+        <div ng-if="auth.user" class="btn-group pull-right" style="margin-top: 25px">
+          <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown">
+            <span class="glyphicon glyphicon-user"></span> {{auth.user.name}} <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu pull-right" role="menu">
+            <li><a ng-click="auth.logout()">Logout</a></li>
+          </ul> </div>
+
+        <h1>Demo 03 <small>Node CRUD</small></h1>
+      </div>
+    </div>
+  </div>
+
+  <!-- Where our views are rendered. -->
+  <div ng-view class="container"></div>
+
+  <!-- Dependencies -->
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-route.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-cookies.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script><!-- Restangular depends on underscore. -->
+  <script src="//cdn.jsdelivr.net/restangular/latest/restangular.js"></script>
+
+  <!-- Optional dependencies -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- Bootstrap depends on jQuery. -->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" />
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+  <!-- Configuration file -->
+  <script src="config.js"></script>
+
+  <!-- Drupal related modules -->
+  <script src="src/services/services.js"></script>
+  <script src="src/auth/auth.js"></script>
+  <script src="src/global/global.js"></script>
+  <script src="src/drupal.js"></script>
+
+  <!-- Application script loading -->
+  <script src="app/app.js"></script>
+</body>
+</html>
